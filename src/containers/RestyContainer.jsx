@@ -1,22 +1,55 @@
-import React from  'react';
-// import { render } from 'react-dom';
+import React, { Component } from  'react';
 import Controls from '../components/resty/Controls';
 import Header from '../components/resty/Header';
+import Display from '../components/resty/Display';
+import History from '../components/history/History';
+import { fetchAPI } from '../services/fetchAPI';
+import styles from '../css/resty.css';
 
-const RestyContainer = () => {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Button Clicked from RustyContainer');
+export default class RestyContainer extends Component {
+
+    state = {
+        loading: false,
+        url: '',
+        method: '',
+        userJson: '',
+        history: [],
+        response: {message: 'Howdy Stranger'}
+    }
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value});
+        
     };
 
-    return(
-        <>
-        <Header />
-        <h1>RustyContainer</h1>
-        <Controls queryHandler={handleSubmit} />
-        </>
-    ) 
-}
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        this.setState({ loading: true })
+        
+        const response = await fetchAPI(
+            this.state.url, 
+            this.state.method,
+            this.state.userJson,        
+        );
+        
+        this.setState({ response, loading: false })
+        console.log('Button Clicked from RustyContainer', response);
+        console.log('LOOK HERE', fetchAPI);
+    };
 
-export default RestyContainer;
+    render() {
+        const { response, loading, url } = this.state;
+        return(
+            <div className={styles.root}>
+                <Header />
+                <History />
+                <Controls url={url} onSubmit={this.handleSubmit} onChange={this.handleChange} />
+                { loading 
+                    ? <div>Loading...</div>
+                    : <Display response={response} />  
+                }
+            </div>
+        ) 
+    } 
+}

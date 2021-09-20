@@ -1,12 +1,20 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import ReactJson from 'react-json-view'
+import PropTypes from 'prop-types';
+import ReactJson from 'react-json-view'
 
-const Display = () => {
-    return <div>This is the Display</div>
+export default function Display({ response }) {
+    return (
+       <div aria-label="response">
+           <ReactJson src={response} />
+       </div>        
+    )
 };
 
-export default Display;
+Display.propTypes = {
+    response: PropTypes.object || PropTypes.array,
+};
+
+
 
 
 

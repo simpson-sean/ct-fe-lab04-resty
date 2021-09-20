@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactJson from 'react-json-view'
+import ReactJson from 'react-json-view';
+import '../../css/json-response.css';
 
 export default function Display({ response }) {
     return (
-       <div aria-label="response">
+       <section aria-label="response" className="json-response">
            <ReactJson src={response} />
-       </div>        
+       </section>        
     )
 };
 

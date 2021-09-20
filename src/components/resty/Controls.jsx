@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../css/controls.css';
 
 const Controls = ({ url, userJson, onChange, onSubmit }) => {
     return(
         <>
         <form onSubmit={onSubmit}>
-            <input type="text" placeholder="Enter URL" aria-label="input-url" name="url" value={url} onChange={onChange} />
-            <section>
+            <input className="api-input" type="text" placeholder="Enter URL" aria-label="input-url" name="url" value={url} onChange={onChange} />
+            <div className="methods">
                 <input type="radio" id="get" name="method" aria-label="method" value="GET" onChange={onChange} />
                 <label htmlFor="get">GET</label>
                 
@@ -22,7 +23,7 @@ const Controls = ({ url, userJson, onChange, onSubmit }) => {
                 <input type="radio" id="delete" name="method" aria-label="method" value="DELETE" onChange={onChange} />
                 <label htmlFor="delete">DELETE</label>
                 <button onClick={onSubmit}>GO!</button>
-            </section>
+            </div>
             <textarea
                 placeholder="All your JSON are belong to us"
                 rows="10"

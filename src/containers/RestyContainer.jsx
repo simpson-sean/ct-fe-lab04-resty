@@ -2,9 +2,9 @@ import React, { Component } from  'react';
 import Controls from '../components/resty/Controls';
 import Header from '../components/resty/Header';
 import Display from '../components/resty/Display';
-import History from '../components/history/History';
+// import History from '../components/history/History';
 import { fetchAPI } from '../services/fetchAPI';
-import styles from '../css/resty.css';
+//import styles from '../css/resty.css';
 
 
 export default class RestyContainer extends Component {
@@ -41,9 +41,8 @@ export default class RestyContainer extends Component {
     render() {
         const { response, loading, url } = this.state;
         return(
-            <div className={styles.root}>
+            <div>
                 <Header />
-                <History />
                 <Controls url={url} onSubmit={this.handleSubmit} onChange={this.handleChange} />
                 { loading 
                     ? <div>Loading...</div>

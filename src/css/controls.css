@@ -22,7 +22,8 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
-    margin: 0px;
+    margin: 2px;
+    
 }
 
 input[type='text'] {
@@ -32,14 +33,14 @@ input[type='text'] {
 
 input[type='radio'] {
     appearance: none;
-    margin: 1.5%;
+    margin: 1%;
     cursor: pointer;
 }
 
-label ~ input[type=radio]:checked+label {
+label ~ input[type=radio]:checked + label {
     background-color: #204060;
     color:#eee;
-    padding: 1vh;
+    padding: 0.5vh;
 }
 
 button {
